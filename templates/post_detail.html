@@ -1,4 +1,6 @@
-{% extends 'shared/_MainLayout.html' %} {% load static %} {% block content %}
+{% extends 'shared/_MainLayout.html' %}
+{% load static %}
+{% block content %}
 <header
   class="masthead"
   style="background-image: url('assets/img/post-bg.jpg')"
@@ -22,7 +24,7 @@
         <p>{{ post.text }}</p>
         <hr />
 
-        <h3 class="text-primary mt-5">نظرات این پست</h3>
+        {% if user.is_authenticated %}
         <form method="post">
           {% csrf_token %}
           {{ add_comment_form }}
@@ -30,6 +32,18 @@
             ثبت نظر
           </button>
         </form>
+        {% else %}
+        <div class="alert alert-danger">
+          <div class="text-dark">
+            <a href="/myadmin/user-login/">
+              <h4 class="h4">
+                لطفا برای نظر دادن وارد شوید
+              </a>
+            </h4>
+          </div>
+        </div>
+        {% endif %}
+        <h3 class="text-primary mt-5">نظرات این پست</h3>
         {% for comment in comments %}
         <div class="border rounded rounded-3 border-secondary mt-3">
           <div class="m-3">
