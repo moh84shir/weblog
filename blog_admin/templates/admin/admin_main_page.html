@@ -1,0 +1,42 @@
+{% extends 'admin/shared/MainLayout.html' %} 
+{% block content %}
+  {% if messages %}
+    {% for message in messages %}
+      <script>
+          alert('{{ message }}')
+      </script>
+    {% endfor %}
+  {% endif %}
+<table class="table">
+  <thead>
+    <tr>
+      <th class="col-10" scope="col-9">نام پست</th>
+        <th class="col-10" scope="col-9">نام نویسنده</th>
+      <th scope="col-3 text-success">ویرایش</th>
+      <th scope="col-3">حذف</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    {% for post in posts %}
+    <tr>
+      <td>{{post.title}}</td>
+      <td>{{post.user.get_username}}</td>
+      <td>
+        <a
+          class="btn btn-success"
+          href="/myadmin/edit-post/{{ post.pk }}"
+        >
+          <i class="fas fa-edit"></i>
+        </a>
+      </td>
+      <td>
+        <a class="btn btn-danger" href="/myadmin/delete-post/{{ post.pk }}">
+          <i class="fas fa-trash"></i>
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

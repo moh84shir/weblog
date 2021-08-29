@@ -1,0 +1,31 @@
+{% extends 'admin/shared/MainLayout.html' %}
+{% block content %}
+{% if not user_first_name or not user_last_name %}
+<div class="alert alert-danger h-25">
+    <p class="text-danger">
+       لطفا اطلاعات خود را در
+       <a href="/myadmin/edit-user-profile">
+         بخش ویرایش
+        </a> کامل کنید
+    </p>
+</div>
+{% endif %}
+<table class="table">
+    <thead>
+      <tr>
+        <th class="col-3" scope="col-7">نام کاربری</th>
+        <th scope="col-3 ">ایمیل</th>
+        <th scope="col-3">نام</th>
+        <th scope="col-3">نام خانوادگی</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        {% if user_name %}<td>{{ user_name }}</td>{% endif %}
+        {% if user_email %}<td>{{ user_email }}</td>{% endif %}
+        {% if user_first_name %}<td>{{ user_first_name }}</td>{% endif %}
+        {% if user_last_name %}<td>{{ user_last_name }}</td>{% endif %}
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'shared/_MainLayout.html' %} {% load static %} {% block content %}
+<header
+  class="masthead"
+  style="background-image: url('assets/img/post-bg.jpg')"
+>
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="post-heading">
+          <h1>{{ post.title }}</h1>
+          <h2 class="subheading">{{ post.simple_description }}</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article class="mb-4">
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <p>{{ post.text }}</p>
+        <hr />
+
+        <h3 class="text-primary mt-5">نظرات این پست</h3>
+        <form method="post">
+          {% csrf_token %}
+          {{ add_comment_form }}
+          <button type="submit" class="btn btn-secondary mt-3 mb-5">
+            ثبت نظر
+          </button>
+        </form>
+        {% for comment in comments %}
+        <div class="border rounded rounded-3 border-secondary mt-3">
+          <div class="m-3">
+            توسط {{ comment.user }} {% if comment.user == request.user %}<a
+              href="/delete-comment/{{ comment.pk }}"
+              ><i class="fas fa-trash"></i></a
+            >{% endif %}
+            <hr />
+            {{ comment.text }}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</article>
+{% endblock %}

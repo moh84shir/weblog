@@ -1,0 +1,44 @@
+{% extends 'admin/shared/MainLayout.html' %} 
+{% block content %}
+  {% if messages %}
+    {% for message in messages %}
+      <script>
+          alert('{{ message }}')
+      </script>
+    {% endfor %}
+  {% endif %}
+<table class="table">
+  <thead>
+    <tr>
+      <th class="col" scope="col-9">نام کاربری</th>
+      <th class="col" scope="col-9">ایمیل</th>
+      <th scope="col-3 text-success">شناسه</th>
+      <th scope="col-3 text-success">ویرایش</th>
+      <th scope="col-3">حذف</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+    <tr>
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.pk }}</td>
+      <td>
+        <a
+          class="btn btn-success"
+          href="/myadmin/edit-user/{{ user.pk }}"
+        >
+          <i class="fas fa-edit"></i>
+        </a>
+      </td>
+      <td>
+        <a class="btn btn-danger" href="/myadmin/delete-user/{{ user.pk }}">
+          <i class="fas fa-trash"></i>
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

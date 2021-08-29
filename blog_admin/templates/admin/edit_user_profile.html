@@ -1,0 +1,48 @@
+{% extends 'admin/shared/MainLayout.html' %}
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <script>
+                alert('{{ message }}')
+            </script>
+        {% endfor %}
+    {% endif %}
+    <div class="alert alert-danger">
+        فقط در صورتی مقدار وارد کنید که مقادیر شما تغییراتی داشته باشد
+        در غیر این صورت هیچ مقداری وارد نکنید
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mt-4">
+            <label>{{ edit_form.user_name.label }}</label> <div class="text-primary"> در حال حاظر : {{ user.username }}</div>
+        {{ edit_form.user_name }}
+        </div>
+
+        <div class="mt-4">
+            <label>{{ edit_form.user_first_name.label }}</label> <div class="text-primary">در حال حاظر : {{ user.first_name }}</div>
+        {{ edit_form.user_first_name }}
+        </div>
+
+        <div class="mt-4">
+            <label>{{ edit_form.user_last_name.label }}</label> <div class="text-primary">در حال حاظر : {{ user.last_name }}</div>
+        {{ edit_form.user_last_name }}
+        </div>
+
+        <div class="mt-4">
+            <label>{{ edit_form.user_email.label }}</label> <div class="text-primary">در حال حاظر {{ user.email }}</div>
+        {{ edit_form.user_email }}
+        </div>
+
+        {% for error in edit_form.user_first_name.errors %}
+            <p style="color: red;">{{ error }}</p>
+        {% endfor %}
+
+        {% for error in edit_form.user_last_name.errors %}
+            <p style="color: red;">{{ error }}</p>
+        {% endfor %}
+
+        <button class="btn btn-success mt-5" type="submit">
+            ثبت تغییرات
+        </button>
+    </form>
+{% endblock %}

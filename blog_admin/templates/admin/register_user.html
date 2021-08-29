@@ -1,0 +1,75 @@
+{% load static %}
+<head>
+  <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}">
+  <style>
+    @font-face {
+      font-family: "BYekan";
+      src: url('{% static "staticfonts/BYekan.eot" %}') format("eot"),
+        url('{% static "fonts/Yekan.ttf" %}') format("truetype"),
+        url('{% static "fonts/BYekan.woff" %}') format("woff");
+    }
+    * {
+      font-family: BYekan, "BYekan", tahoma;
+      font-size: large;
+    }
+    a {
+         text-decoration: none;
+    }
+  </style>
+</head>
+<body dir="rtl">
+  
+  <div class="row justify-content-center rounded mt-lg-5 ">
+    <div class="col-4">
+      <div class="alert alert-danger "><strong>
+        در انتخاب و نگهداری رمز عبور خود دقت کنید.رمز عبور قابل بازیابی و یا تغییر نمیباشد
+      </strong></div>
+      <form class="form-signin border rounded-3 p-lg-5" method="POST">
+        {% csrf_token %}
+        <h1 class="h3 mb-lg-5 font-weight-normal text-center">لطفا ثبت نام کنید</h1>
+        <div class="row justify-content-center">
+          <div class="row mb-lg-2">
+            <p>{{register_form.user_name.label}}</p>
+            {{ register_form.user_name }}
+          </div>
+          <div class="row mb-lg-2">
+            <p>{{register_form.email.label}}</p>
+            {{ register_form.email }}
+          </div>
+          <div class="row mb-lg-2">
+            <p>{{ register_form.password.label }}</p>
+            {{ register_form.password }}
+          </div>
+          <div class="row mb-lg-2">
+            <p>{{ register_form.re_password.label }}</p>
+            {{ register_form.re_password }}
+          </div>
+          {% for error in register_form.user_name.errors %}
+            <p class="text-danger">
+              {{ error }}
+            </p>
+          {% endfor %}
+          {% for error in register_form.password.errors %}
+            <p class="text-danger">
+              {{ error }}
+            </p>
+          {% endfor %}
+          {% for error in register_form.re_password.errors %}
+            <p class="text-danger">
+              {{ error }}
+            </p>
+          {% endfor %}
+          {% for error in register_form.email.errors %}
+            <p class="text-danger">
+              {{ error }}
+            </p>
+          {% endfor %}
+          <a href="/myadmin/user-login">اکانت دارید؟ وارد شوید</a>
+            <button class="btn btn-lg btn-primary btn-block mt-5" type="submit">
+              ثبت نام
+            </button>  
+        </div>
+      </form>
+    </div>
+  </div>
+</body>

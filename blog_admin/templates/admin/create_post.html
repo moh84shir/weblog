@@ -1,0 +1,17 @@
+{% extends 'admin/shared/MainLayout.html' %}
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <script>
+                alert('{{ message }}')
+            </script>
+        {% endfor %}
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ create_post_form }}
+        <button type="submit" class="btn btn-success mt-5">
+            <i class="fas fa-plus"> </i> اضافه کردن پست
+        </button>
+    </form>
+{% endblock %}
