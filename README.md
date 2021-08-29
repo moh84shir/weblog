@@ -11,4 +11,4 @@
 7. 'python manage.py migrate'
 8. 'python manage.py runserver'
 9. open your browser
-10. type in url 'http://localhost:8000/' or 'http://127.0.0.1:8000/'
+10. type 'http://localhost:8000' or 'http://127.0.0.1:8000'

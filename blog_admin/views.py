@@ -366,3 +366,4 @@ def admin_menubar(request):
         'is_superuser': is_superuser
     }
     return render(request, 'admin/shared/MenuBar.html', context)
+
