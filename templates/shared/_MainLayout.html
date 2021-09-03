@@ -20,6 +20,22 @@
       <link rel="stylesheet" href="{% static 'fontaw/css/all.css' %}" />
       <link href="{% static 'css/styles.css'%}" rel="stylesheet" />
       <script src="{% static 'js/script.js' %}"></script>
+
+      <style>
+        @font-face {
+          font-family: "BYekan";
+          src: url('{% static "staticfonts/BYekan.eot" %}') format("eot"),
+            url('{% static "fonts/Yekan.ttf" %}') format("truetype"),
+            url('{% static "fonts/BYekan.woff" %}') format("woff");
+        }
+        * {
+          font-family: BYekan, "BYekan", tahoma;
+          font-size: large;
+        }
+        a {
+             text-decoration: none;
+        }
+      </style>
     </head>
   </head>
   <body dir="rtl">

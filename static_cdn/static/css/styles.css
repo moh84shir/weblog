@@ -11220,3 +11220,14 @@ header.masthead .site-heading .h1 {
     font-size: 2.25rem;
   }
 }
+
+@font-face {
+  font-family: "BYekan";
+  src: url('{% static "staticfonts/BYekan.eot" %}') format("eot"),
+    url('{% static "fonts/Yekan.ttf" %}') format("truetype"),
+    url('{% static "fonts/BYekan.woff" %}') format("woff");
+}
+* {
+  font-family: BYekan, "BYekan", tahoma;
+  font-size: medium;
+}
