@@ -7,7 +7,7 @@ from .forms import (
     EditUserProfileForm,
     LoginUserForm,
     EditSettingsForm,
-    RegisterUserForm
+    RegisterUserForm,
 )
 from blog_settings.models import Setting
 from django.contrib.auth.models import User
@@ -20,7 +20,7 @@ def check_user(user):
 
 
 def set_verbose_value(empty_value, verbose_value):
-    if empty_value == '' or empty_value == None:
+    if not empty_value == '' or empty_value:
         empty_value = verbose_value
 
 
@@ -142,7 +142,7 @@ def create_post(request):
                 title=title,
                 simple_description=simple_description,
                 text=text,
-                user=this_user
+                user=this_user,
             )
             create_post_form = CreatePostForm(None)
 
@@ -366,4 +366,3 @@ def admin_menubar(request):
         'is_superuser': is_superuser
     }
     return render(request, 'admin/shared/MenuBar.html', context)
-

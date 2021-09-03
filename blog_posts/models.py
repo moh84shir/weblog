@@ -9,6 +9,8 @@ class Post(models.Model):
     simple_description = models.CharField(max_length=60)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
+    image = models.ImageField(
+        upload_to="media/posts_images", blank=True, null=True)
 
     def get_url(self):
         return f"/posts/{self.pk}"

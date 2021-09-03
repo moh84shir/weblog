@@ -1,6 +1,5 @@
 {% load static %}
 {% load render_partial %}
-
 <!DOCTYPE html>
 <html lang="fa">
   <head>
@@ -9,19 +8,19 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>وبلاگ محمد شیرزاد</title>
-    {% include 'shared/_HeaderReferences.html' %}
-    <style>
-      @font-face {
-        font-family: "BYekan";
-        src: url('{% static "staticfonts/BYekan.eot" %}') format("eot"),
-          url('{% static "fonts/Yekan.ttf" %}') format("truetype"),
-          url('{% static "fonts/BYekan.woff" %}') format("woff");
-      }
-      * {
-        font-family: BYekan, "BYekan", tahoma;
-        font-size: large;
-      }
-    </style>
+    {% load static %}
+    <head>
+      <meta charset="utf-8" />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no"
+      />
+      <meta name="description" content="" />
+      <meta name="author" content="" />
+      <link rel="stylesheet" href="{% static 'fontaw/css/all.css' %}" />
+      <link href="{% static 'css/styles.css'%}" rel="stylesheet" />
+      <script src="{% static 'js/script.js' %}"></script>
+    </head>
   </head>
   <body dir="rtl">
     {% render_partial 'header' %}

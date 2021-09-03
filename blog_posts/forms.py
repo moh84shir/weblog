@@ -1,5 +1,6 @@
 from django import forms
 
+
 class AddCommentForm(forms.Form):
     text = forms.CharField(
         widget=forms.Textarea(
