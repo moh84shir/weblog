@@ -35,7 +35,7 @@
         <form method="post">
           {% csrf_token %}
           {{ add_comment_form }}
-          <button type="submit" class="btn btn-secondary mt-3 mb-5">
+          <button type="submit" class="rounded btn btn-secondary mt-3 mb-5">
             ثبت نظر
           </button>
         </form>
@@ -51,18 +51,35 @@
         </div>
         {% endif %}
         <h3 class="text-primary mt-5">نظرات این پست</h3>
-        {% for comment in comments %}
-        <div class="border rounded rounded-3 border-secondary mt-3">
-          <div class="m-3">
-            توسط {{ comment.user }} {% if comment.user == request.user %}<a
-              href="/delete-comment/{{ comment.pk }}"
-              ><i class="fas fa-trash"></i></a
-            >{% endif %}
-            <hr />
-            {{ comment.text }}
+        {% if comments %}
+          {% for comment in comments %}
+            <div class="border rounded rounded-3 border-secondary mt-3">
+              <div class="m-3">
+                توسط {{ comment.user }} {% if comment.user == request.user %}<a
+                  href="/delete-comment/{{ comment.pk }}"
+                  ><i class="fas fa-trash"></i></a
+                >{% endif %}
+                <hr />
+                {{ comment.text }}
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="rounded-3 alert alert-danger">
+            <div class="text-dark">
+                <h4 class="h6 text-dark">
+                  هیچ نظری برای این پست موجود نیست
+                </h4>
+            </div>
           </div>
-        </div>
-        {% endfor %}
+          <div class="rounded-3 alert alert-success">
+            <div class="text-dark">
+              <h4 class="h6 text-dark">
+                اولین نفری باشید که به این پست نظر میدهد
+              </h4>
+            </div>
+          </div>
+        {% endif %}
       </div>
     </div>
   </div>
