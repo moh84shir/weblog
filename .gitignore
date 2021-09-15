@@ -75,3 +75,6 @@ dmypy.json
 migrations/
 static_cdn/
 config.py
+.vscode/
+migrations/
+static_cdn/
