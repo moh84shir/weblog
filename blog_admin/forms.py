@@ -24,13 +24,13 @@ class CreatePostForm(forms.Form):
     )
 
     post_text = forms.CharField(
+        label="لطفا متن پست جدید را وارد کنید.",
         widget=forms.Textarea(
             attrs={
                 'placeholder': 'متن پست جدید',
                 'class': 'form-control',
             }
-        ),
-        label="لطفا متن پست جدید را وارد کنید."
+        )
     )
 
 
@@ -169,7 +169,8 @@ class RegisterUserForm(forms.Form):
 
         if is_user_name_exists:
             raise forms.ValidationError(
-                'نام کاربری وارد شده موجود است.لطفا نام کاربری دیگری وارد کنید')
+                ''' نام کاربری وارد شده موجود است.
+                نام کاربری دیگری وارد کنید''')
 
         return user_name
 

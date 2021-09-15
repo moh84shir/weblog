@@ -48,7 +48,7 @@ def all_users(request):
     """
         return all users for manage of superuesr
     """
-    if check_user(request.user) == False:
+    if not check_user(request.user):
         return redirect('/myadmin')
 
     users = User.objects.all()
@@ -61,7 +61,7 @@ def all_users(request):
 def delete_user(request, **kwargs):
     """
         delete an users
-        just super user
+        just for super user
     """
     if check_user(request.user):
         this_pk = kwargs['pk']
@@ -94,7 +94,7 @@ def edit_user(request, **kwargs):
     """
         edit an users (just for super user)
     """
-    if check_user(request.user) == False:
+    if not check_user(request.user):
         return redirect('/myadmin')
 
     this_pk = kwargs['pk']
@@ -130,7 +130,7 @@ def create_post(request):
         submit an posts
     """
     this_user = request.user
-    create_post_form = CreatePostForm(request.POST or None)
+    create_post_form = CreatePostForm(request.POST)
     if create_post_form is not None:
         if create_post_form.is_valid():
             title = create_post_form.cleaned_data.get('post_title')
@@ -250,7 +250,7 @@ def edit_settings(request):
     """
         edit an site settings (just for super user)
     """
-    if check_user(request.user) == False:
+    if not check_user(request.user):
         return redirect('/myadmin')
 
     settings = Setting.objects.first()  # set site settings if exist
@@ -351,7 +351,7 @@ def admin_header(request):
         render partial view for admin header
     """
     context = {
-        'title': 'بخش مدیریت وبلاگ'
+        'title': 'ناحیه ی کاربری'
     }
     return render(request, 'admin/shared/header.html', context)
 
