@@ -75,7 +75,7 @@ def delete_user(request, **kwargs):
 @login_required(login_url='/myadmin/user-login')
 def delete_post(request, **kwargs):
     """
-        delete an posts just for athor post
+        delete an posts only for athor post
         and delete all post for super user
     """
     this_user = request.user
